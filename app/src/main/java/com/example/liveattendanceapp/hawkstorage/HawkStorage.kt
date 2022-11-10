@@ -1,7 +1,6 @@
 package com.example.liveattendanceapp.hawkstorage
 
 import android.content.Context
-import android.media.session.MediaSession
 import com.example.liveattendanceapp.model.User
 import com.orhanobut.hawk.Hawk
 
@@ -25,7 +24,7 @@ class HawkStorage {
         return Hawk.get(USER_KEY)
     }
 
-    fun setToken(token: MediaSession.Token){
+    fun setToken(token: String?){
         Hawk.put(TOKEN_KEY, token)
     }
 
