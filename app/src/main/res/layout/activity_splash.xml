@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo_live_attendance"/>
+        android:src="@drawable/logo_setjen"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,5 +20,6 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="20dp"
         android:textStyle="bold"
-        android:text="@string/app_name"/>
+        android:textSize="30sp"
+        android:text="@string/sirajin"/>
 </LinearLayout>

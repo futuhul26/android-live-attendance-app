@@ -18,20 +18,25 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/image_login"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/logo_setjen"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_sign_in_your_account"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="20sp"
+            android:text="@string/sirajin"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
             android:textStyle="bold"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:background="@android:color/transparent"
             android:layout_height="56dp"
             app:hintEnabled="false"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
             android:layout_marginTop="24dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -51,6 +56,8 @@
             android:layout_height="56dp"
             app:hintEnabled="false"
             app:endIconMode="password_toggle"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
             android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText

@@ -25,11 +25,12 @@
         android:translationY="-40dp"
         app:layout_anchor="@id/layout_bottom_sheet"
         app:layout_anchorGravity="top|end"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        layout="@layout/bottom_sheet_attendance"/>
 
     <include
         android:id="@+id/layout_bottom_sheet"
-        layout="@layout/bottom_sheet_attendance" />
+         />
 
     <include
         android:layout_width="224dp"
