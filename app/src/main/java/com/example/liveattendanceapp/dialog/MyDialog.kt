@@ -1,4 +1,4 @@
-package com.example.liveattendanceapp.` dialog`
+package com.example.liveattendanceapp.dialog
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
