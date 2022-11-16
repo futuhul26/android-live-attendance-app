@@ -1,7 +1,7 @@
 package com.example.liveattendanceapp.views.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.liveattendanceapp.R
 import com.example.liveattendanceapp.databinding.ActivityMainBinding
