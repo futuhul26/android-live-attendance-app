@@ -31,4 +31,13 @@
     <string name="required_permission">Required Permission</string>
     <string name="search_your_location">Search Your Location</string>
     <string name="failed_to_capture_image">Failed to Capture Image</string>
+    <string name="are_you_sure">Are You Sure?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="alert">Alert</string>
+    <string name="please_take_your_photo">Please take your photo</string>
+    <string name="success_check_in">Success Check-In</string>
+    <string name="success_check_out">Check-Out</string>
+    <string name="something_wrong">Something Wrong</string>
+    <string name="your_already_present">You already present</string>
 </resources>
