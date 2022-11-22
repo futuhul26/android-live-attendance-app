@@ -38,4 +38,6 @@
     <string name="success_check_out">Sukses presensi keluar</string>
     <string name="something_wrong">Ada kesalahan</string>
     <string name="your_already_present">Anda sudah melakukan presensi</string>
+    <string name="your_password_has_been_update">Kata sandi Anda sudah diubah</string>
+    <string name="your_password_didnt_match">Kata sandi Anda tidak cocok</string>
 </resources>
