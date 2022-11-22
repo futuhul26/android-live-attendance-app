@@ -40,4 +40,6 @@
     <string name="success_check_out">Check-Out</string>
     <string name="something_wrong">Something Wrong</string>
     <string name="your_already_present">You already present</string>
+    <string name="your_password_has_been_update">Your password has been update</string>
+    <string name="your_password_didnt_match">Your password didn\'t match</string>
 </resources>
