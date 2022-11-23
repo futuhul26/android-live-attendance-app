@@ -294,7 +294,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
 
     private fun checkIsCheckIn() {
         if (isCheckIn){
-            bindingBottomSheet?.btnCheckIn?.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_check_out)
+            bindingBottomSheet?.btnCheckIn?.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_btn_check_out)
             bindingBottomSheet?.btnCheckIn?.text = getString(R.string.check_out)
         }else{
             bindingBottomSheet?.btnCheckIn?.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_btn_primary)

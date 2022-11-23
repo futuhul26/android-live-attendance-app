@@ -18,7 +18,7 @@ android {
 
         //BASE_URL
         buildConfigField "String", "BASE_URL", "\"http://www.sirajinv2.my.id/api/\""
-        buildConfigField "String", "BASE_IMAGE_URL", "\"http://www.sirajinv2.my.id/storage/profile/\""
+        buildConfigField "String", "BASE_IMAGE_URL", "\"http://www.sirajinv2.my.id/storage/app/public/profile/\""
     }
 
     buildTypes {

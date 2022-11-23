@@ -16,6 +16,8 @@
     <string name="your_photo">Your Photo</string>
     <string name="check_in">Check-In</string>
     <string name="check_out">Check-Out</string>
+    <string name="date">Date</string>
+    <string name="month">Month</string>
     <string name="change_password">Change Password</string>
     <string name="change_language">Change Language</string>
     <string name="logout">Logout</string>
