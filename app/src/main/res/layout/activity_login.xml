@@ -20,15 +20,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/logo_setjen"/>
+            android:src="@drawable/logo_sirajin"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sirajin"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            android:textStyle="bold"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/sirajin"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold"/>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
