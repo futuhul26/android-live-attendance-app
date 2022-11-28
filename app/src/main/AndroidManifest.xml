@@ -16,9 +16,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher_setjen"
+        android:icon="@mipmap/ic_launcher_sirajin"
         android:label="@string/sirajin"
-        android:roundIcon="@mipmap/ic_launcher_setjen"
+        android:roundIcon="@mipmap/ic_launcher_sirajin"
         android:supportsRtl="true"
 
         android:usesCleartextTraffic="true"
