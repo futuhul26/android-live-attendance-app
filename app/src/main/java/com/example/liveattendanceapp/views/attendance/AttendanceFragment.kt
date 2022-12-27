@@ -16,10 +16,12 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Looper
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -57,6 +59,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.*
 
 class AttendanceFragment : Fragment(), OnMapReadyCallback {
 
@@ -189,6 +192,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
                 }
             }
         }
+
     }
 
     private fun sendDataAttendance(token: String, type: String) {
@@ -291,6 +295,62 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
 
             })
     }
+
+//    private fun getLastLocation() {
+//        if (checkPermission()) {
+//            if (isLocationEnabled()) {
+//
+//                val locationCallBack = object : LocationCallback() {
+//                    override fun onLocationResult(locationResult: LocationResult) {
+//                        super.onLocationResult(locationResult)
+//                        val location = locationResult.lastLocation
+//                        val currentLat = location!!.latitude
+//                        val currentLong = location!!.longitude
+//
+//                        /*Koordinat lokasi DPR RI*/
+//                        val destinationLat = -6.21007761685729
+//                        val destinationLon = 106.80000935358223
+//
+//                        val distance = calculateDistance(
+//                            currentLat,
+//                            currentLong,
+//                            destinationLat,
+//                            destinationLon
+//                        ) * 1000
+//
+//                        Log.d("MainActivity", "[onLocationResult] - $distance")
+//                        if (distance < 325.0) {
+//
+//                            Toast.makeText(this@MainActivity, "SUCCESSS", Toast.LENGTH_SHORT).show()
+//                        } else {
+//                            tvCheckinSuccess.visibility = View.VISIBLE
+//                            tvCheckinSuccess.text = "Anda berada diluar jangkauan"
+//                        }
+//
+//                        fusedLocationProviderClient?.removeLocationUpdates(this)
+//                    }
+//                }
+//                fusedLocationProviderClient?.requestLocationUpdates(
+//                    locationRequest,
+//                    locationCallBack,
+//                    Looper.getMainLooper()
+//                )
+//            } else {
+//                Toast.makeText(this, "Please turn on your location", Toast.LENGTH_SHORT).show()
+//                startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+//            }
+//        } else {
+//            requestPermission()
+//        }
+//    }
+//    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+//        val r = 6372.8 // in kilometers
+//        val radiansLat1 = Math.toRadians(lat1)
+//        val radiansLat2 = Math.toRadians(lat2)
+//        val dLat = Math.toRadians(lat2 - lat1)
+//        val dLon = Math.toRadians(lon2 - lon1)
+//        return 2 * r * asin(sqrt(sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(radiansLat1) * cos(radiansLat2)))
+//    }
 
     private fun checkIsCheckIn() {
         if (isCheckIn){
