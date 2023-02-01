@@ -16,12 +16,10 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Looper
 import android.provider.MediaStore
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -61,6 +59,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.*
 
+@Suppress("DEPRECATION")
 class AttendanceFragment : Fragment(), OnMapReadyCallback {
 
     companion object{
@@ -502,7 +501,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
                 locationCallBack = object : LocationCallback(){
                     override fun onLocationResult(locationResult: LocationResult) {
                         super.onLocationResult(locationResult!!)
-                        currentLocation = locationResult?.lastLocation
+                        currentLocation = locationResult.lastLocation
 
                         if (currentLocation != null){
                             val latitude = currentLocation?.latitude

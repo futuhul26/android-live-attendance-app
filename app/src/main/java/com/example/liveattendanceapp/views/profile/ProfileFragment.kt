@@ -57,9 +57,9 @@ class ProfileFragment : Fragment() {
             context?.startActivity<ChangePasswordActivity>()
         }
 
-        binding?.btnChangeLanguage?.setOnClickListener {
-            startActivity(Intent(ACTION_LOCALE_SETTINGS))
-        }
+//        binding?.btnChangeLanguage?.setOnClickListener {
+//            startActivity(Intent(ACTION_LOCALE_SETTINGS))
+//        }
 
         binding?.btnLogout?.setOnClickListener {
             AlertDialog.Builder(context)

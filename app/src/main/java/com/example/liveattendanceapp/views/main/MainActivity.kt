@@ -9,6 +9,7 @@ import com.example.liveattendanceapp.views.attendance.AttendanceFragment
 import com.example.liveattendanceapp.views.history.HistoryFragment
 import com.example.liveattendanceapp.views.profile.ProfileFragment
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

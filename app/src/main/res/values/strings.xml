@@ -14,8 +14,10 @@
     <string name="current_location">Lokasi sekarang</string>
     <string name="default_text" translatable="false">-</string>
     <string name="your_photo">Foto Anda</string>
-    <string name="check_in">Presensi\nMasuk</string>
-    <string name="check_out">Presensi\nPulang</string>
+    <string name="check_in">Datang</string>
+    <string name="check_out">Pulang</string>
+    <string name="check_in_time">Waktu\nDatang</string>
+    <string name="check_out_time">Waktu\nPulang</string>
     <string name="date">Tanggal</string>
     <string name="month">Bulan</string>
     <string name="change_password">Ganti kata sandi</string>
@@ -38,8 +40,8 @@
     <string name="no">Tidak</string>
     <string name="alert">Peringatan</string>
     <string name="please_take_your_photo">Mohon ambil foto Anda</string>
-    <string name="success_check_in">Sukses presensi masuk</string>
-    <string name="success_check_out">Sukses presensi keluar</string>
+    <string name="success_check_in">Sukses presensi datang</string>
+    <string name="success_check_out">Sukses presensi pulang</string>
     <string name="something_wrong">Ada kesalahan</string>
     <string name="your_already_present">Anda sudah melakukan presensi</string>
     <string name="your_password_has_been_update">Kata sandi Anda sudah diubah</string>
