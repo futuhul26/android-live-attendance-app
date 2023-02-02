@@ -5,6 +5,7 @@
     <string name="email">Email</string>
     <string name="password">Kata sandi</string>
     <string name="login">Masuk</string>
+    <string name="copyright">Sekretariat Jenderal DPR RI\n2023</string>
     <string name="forgot_password">Lupa kata sandi?</string>
     <string name="txt_forgot_password">Masukkan email anda dibawah untuk reset kata sandi.</string>
     <string name="submit">Kirim</string>
