@@ -25,6 +25,9 @@ data class User(
 	@field:SerializedName("name")
 	val name: String? = null,
 
+	@field:SerializedName("unit_kerja")
+	val unit_kerja: String? = null,
+
 	@field:SerializedName("photo")
 	val photo: Any? = null,
 

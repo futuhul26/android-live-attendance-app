@@ -8,6 +8,7 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
+import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
@@ -20,6 +21,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -59,7 +61,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.*
 
-@Suppress("DEPRECATION")
 class AttendanceFragment : Fragment(), OnMapReadyCallback {
 
     companion object{
@@ -190,8 +191,9 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
                         .show()
                 }
             }
-        }
 
+
+        }
     }
 
     private fun sendDataAttendance(token: String, type: String) {
@@ -307,8 +309,8 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
 //                        val currentLong = location!!.longitude
 //
 //                        /*Koordinat lokasi DPR RI*/
-//                        val destinationLat = -6.21007761685729
-//                        val destinationLon = 106.80000935358223
+//                        val destinationLat = -6.210086314480631
+//                        val destinationLon = 106.8000914977589
 //
 //                        val distance = calculateDistance(
 //                            currentLat,
@@ -341,14 +343,6 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
 //        } else {
 //            requestPermission()
 //        }
-//    }
-//    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-//        val r = 6372.8 // in kilometers
-//        val radiansLat1 = Math.toRadians(lat1)
-//        val radiansLat2 = Math.toRadians(lat2)
-//        val dLat = Math.toRadians(lat2 - lat1)
-//        val dLon = Math.toRadians(lon2 - lon1)
-//        return 2 * r * asin(sqrt(sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(radiansLat1) * cos(radiansLat2)))
 //    }
 
     private fun checkIsCheckIn() {
@@ -501,18 +495,34 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
                 locationCallBack = object : LocationCallback(){
                     override fun onLocationResult(locationResult: LocationResult) {
                         super.onLocationResult(locationResult!!)
-                        currentLocation = locationResult.lastLocation
+                        val currentLocation = locationResult.lastLocation
 
                         if (currentLocation != null){
-                            val latitude = currentLocation?.latitude
-                            val longitude = currentLocation?.longitude
+                            val currentLat = currentLocation?.latitude
+                            val currentLong = currentLocation?.longitude
 
-                            if (latitude != null && longitude != null){
-                                val latLng = LatLng(latitude,longitude)
+//                            val destinationLat = -6.210086314480631
+//                            val destinationLon = 106.8000914977589
+//
+//                            val distance = calculateDistance(
+//                                currentLat!!,
+//                                currentLong!!,
+//                                destinationLat,
+//                                destinationLon
+//                            ) * 1000
+//
+//                            if (distance < 325.0) {
+//                                println("sukses")
+//                            } else {
+//                                println("Gagal")
+//                            }
+
+                            if (currentLat != null && currentLong != null){
+                                val latLng = LatLng(currentLat,currentLong)
                                 map?.moveCamera(CameraUpdateFactory.newLatLng(latLng))
                                 map?.animateCamera(CameraUpdateFactory.zoomTo(20F))
 
-                                val address = getAddress(latitude, longitude)
+                                val address = getAddress(currentLat, currentLong)
                                 if (address != null && address.isNotEmpty()){
                                     bindingBottomSheet?.tvCurrentLocation?.text = address
                                 }
@@ -533,6 +543,16 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val r = 6372.8 // in kilometers
+        val radiansLat1 = Math.toRadians(lat1)
+        val radiansLat2 = Math.toRadians(lat2)
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLon = Math.toRadians(lon2 - lon1)
+        return 2 * r * asin(sqrt(sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(radiansLat1) * cos(radiansLat2)))
+    }
+
+
     private fun getAddress(latitude: Double, longitude: Double): String? {
         val result: String
         context?.let {
@@ -546,6 +566,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         }
         return null
     }
+
 
     private fun goToTurnOnGps() {
         settingsClient?.checkLocationSettings(locationSettingsRequest!!)

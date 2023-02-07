@@ -49,6 +49,7 @@ class ProfileFragment : Fragment() {
         val imageUrl = BuildConfig.BASE_IMAGE_URL + user.photo
         Glide.with(requireContext()).load(imageUrl).placeholder(android.R.color.darker_gray).into(binding!!.ivProfile)
         binding?.tvNameProfile?.text = user.name
+        binding?.tvUnitKerjaProfile?.text = user.unit_kerja
         binding?.tvEmailProfile?.text = user.email
     }
 
