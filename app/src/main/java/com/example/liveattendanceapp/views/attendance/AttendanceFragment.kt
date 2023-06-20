@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.liveattendanceapp.views.attendance
 
 import android.Manifest
@@ -8,7 +10,7 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
-import android.location.Address
+//import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
@@ -21,7 +23,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+//import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -135,6 +137,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         onClick()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_IMAGE_CAPTURE){
@@ -417,6 +420,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -494,12 +498,12 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
 
                 locationCallBack = object : LocationCallback(){
                     override fun onLocationResult(locationResult: LocationResult) {
-                        super.onLocationResult(locationResult!!)
+                        super.onLocationResult(locationResult)
                         val currentLocation = locationResult.lastLocation
 
                         if (currentLocation != null){
-                            val currentLat = currentLocation?.latitude
-                            val currentLong = currentLocation?.longitude
+                            val currentLat = currentLocation.latitude
+                            val currentLong = currentLocation.longitude
 
 //                            val destinationLat = -6.210086314480631
 //                            val destinationLon = 106.8000914977589
@@ -543,14 +547,14 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        val r = 6372.8 // in kilometers
-        val radiansLat1 = Math.toRadians(lat1)
-        val radiansLat2 = Math.toRadians(lat2)
-        val dLat = Math.toRadians(lat2 - lat1)
-        val dLon = Math.toRadians(lon2 - lon1)
-        return 2 * r * asin(sqrt(sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(radiansLat1) * cos(radiansLat2)))
-    }
+//    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+//        val r = 6372.8 // in kilometers
+//        val radiansLat1 = Math.toRadians(lat1)
+//        val radiansLat2 = Math.toRadians(lat2)
+//        val dLat = Math.toRadians(lat2 - lat1)
+//        val dLon = Math.toRadians(lon2 - lon1)
+//        return 2 * r * asin(sqrt(sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(radiansLat1) * cos(radiansLat2)))
+//    }
 
 
     private fun getAddress(latitude: Double, longitude: Double): String? {
