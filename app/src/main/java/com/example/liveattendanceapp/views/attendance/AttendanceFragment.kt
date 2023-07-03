@@ -78,11 +78,19 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
-    private val cameraPermissions = arrayOf(
-        Manifest.permission.CAMERA,
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
+    private val cameraPermissions = if (Build.VERSION.SDK_INT >= 33){
+        arrayOf(
+            Manifest.permission.READ_MEDIA_IMAGES,
+            Manifest.permission.READ_MEDIA_VIDEO,
+            Manifest.permission.READ_MEDIA_AUDIO
+        )
+    }else {
+        arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+    }
 
     //Config Maps
     private var mapAttendance: SupportMapFragment? = null
@@ -617,7 +625,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setRequestPermissionCamera() {
-        requestPermissions(mapPermissions, REQUEST_CODE_CAMERA_PERMISSIONS)
+        requestPermissions(cameraPermissions, REQUEST_CODE_CAMERA_PERMISSIONS)
     }
 
     private fun checkPermissionCamera(): Boolean {
