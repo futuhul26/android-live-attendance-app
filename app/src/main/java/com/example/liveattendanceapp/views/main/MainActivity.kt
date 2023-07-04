@@ -7,6 +7,7 @@ import com.example.liveattendanceapp.R
 import com.example.liveattendanceapp.databinding.ActivityMainBinding
 import com.example.liveattendanceapp.views.attendance.AttendanceFragment
 import com.example.liveattendanceapp.views.history.HistoryFragment
+import com.example.liveattendanceapp.views.logbook.LogbookFragment
 import com.example.liveattendanceapp.views.profile.ProfileFragment
 
 @Suppress("DEPRECATION")
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.action_attendance -> {
                     openFragment(AttendanceFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.action_logbook -> {
+                    openFragment(LogbookFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.action_profile -> {

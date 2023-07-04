@@ -15,6 +15,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Looper
@@ -29,6 +30,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+//import com.android.volley.BuildConfig
 import com.example.liveattendanceapp.BuildConfig
 import com.example.liveattendanceapp.R
 import com.example.liveattendanceapp.databinding.BottomSheetAttendanceBinding
@@ -78,11 +80,19 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
-    private val cameraPermissions = arrayOf(
-        Manifest.permission.CAMERA,
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
+    private val cameraPermissions = if (Build.VERSION.SDK_INT >= 33){
+        arrayOf(
+            Manifest.permission.READ_MEDIA_IMAGES,
+            Manifest.permission.READ_MEDIA_VIDEO,
+            Manifest.permission.READ_MEDIA_AUDIO
+        )
+    }else {
+        arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+    }
 
     //Config Maps
     private var mapAttendance: SupportMapFragment? = null
@@ -617,7 +627,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setRequestPermissionCamera() {
-        requestPermissions(mapPermissions, REQUEST_CODE_CAMERA_PERMISSIONS)
+        requestPermissions(cameraPermissions, REQUEST_CODE_CAMERA_PERMISSIONS)
     }
 
     private fun checkPermissionCamera(): Boolean {

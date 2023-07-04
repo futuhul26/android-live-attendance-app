@@ -11,7 +11,12 @@
         android:id="@+id/action_attendance"
         android:title="@string/attendance"
         android:icon="@drawable/ic_baseline_location_on_24"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_logbook"
+        android:title="@string/isi_logbook"
+        android:icon="@drawable/ic_baseline_edit_note_24"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/action_profile"
         android:title="@string/profile"

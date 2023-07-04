@@ -23,6 +23,11 @@
     <string name="month">Bulan</string>
     <string name="change_password">Ganti Password</string>
     <string name="change_language">Ganti Bahasa</string>
+    <string name="isi_logbook">Isi Logbook</string>
+    <string name="isi_tugas_pokok">Isi Tugas Pokok</string>
+    <string name="jam_mulai">Jam Mulai</string>
+    <string name="jam_selesai">Jam Selesai</string>
+    <string name="keterangan">Keterangan</string>
     <string name="logout">Keluar</string>
     <string name="old_password">password lama</string>
     <string name="new_password">password baru</string>
@@ -47,4 +52,6 @@
     <string name="your_already_present">Anda sudah melakukan presensi</string>
     <string name="your_password_has_been_update">Password Anda sudah diubah</string>
     <string name="your_password_didnt_match">Password Anda tidak cocok</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
