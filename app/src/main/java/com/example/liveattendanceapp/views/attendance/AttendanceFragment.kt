@@ -37,6 +37,7 @@ import com.example.liveattendanceapp.databinding.BottomSheetAttendanceBinding
 import com.example.liveattendanceapp.databinding.FragmentAttendanceBinding
 import com.example.liveattendanceapp.date.MyDate
 import com.example.liveattendanceapp.dialog.MyDialog
+import com.example.liveattendanceapp.haversine.HaversineUtil
 import com.example.liveattendanceapp.hawkstorage.HawkStorage
 import com.example.liveattendanceapp.model.AttendanceResponse
 import com.example.liveattendanceapp.model.HistoryResponse
@@ -84,8 +85,10 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         arrayOf(
             Manifest.permission.READ_MEDIA_IMAGES,
             Manifest.permission.READ_MEDIA_VIDEO,
-            Manifest.permission.READ_MEDIA_AUDIO
-        )
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.CAMERA,
+
+            )
     }else {
         arrayOf(
             Manifest.permission.CAMERA,
@@ -213,6 +216,11 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         val params = HashMap<String, RequestBody>()
         MyDialog.showProgressDialog(context)
         if (currentLocation != null && currentPhotoPath.isNotEmpty()){
+            if(HaversineUtil().haversine(currentLocation?.latitude!!, currentLocation?.longitude!!) > 0.2){
+                MyDialog.dynamicDialog(context, getString(R.string.alert), getString(R.string.location_not_valid))
+                return
+            }
+
             val latitude = currentLocation?.latitude.toString()
             val longitude = currentLocation?.longitude.toString()
             val address = bindingBottomSheet?.tvCurrentLocation?.text.toString()
@@ -509,11 +517,11 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
                 locationCallBack = object : LocationCallback(){
                     override fun onLocationResult(locationResult: LocationResult) {
                         super.onLocationResult(locationResult)
-                        val currentLocation = locationResult.lastLocation
+                        currentLocation = locationResult.lastLocation
 
                         if (currentLocation != null){
-                            val currentLat = currentLocation.latitude
-                            val currentLong = currentLocation.longitude
+                            val currentLat = currentLocation!!.latitude
+                            val currentLong = currentLocation!!.longitude
 
 //                            val destinationLat = -6.210086314480631
 //                            val destinationLon = 106.8000914977589
