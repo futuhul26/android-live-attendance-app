@@ -38,4 +38,13 @@ interface LiveAttendanceApiServices {
     @Headers("Accept: application/json", "Content-Type: application/json")
     @POST("auth/password/reset")
     fun changePassword(@Header("Authorization") token: String, @Body body: String): Call<ChangePasswordResponse>
+
+    @FormUrlEncoded
+    @Headers("Accept: application/json")
+    @POST("logbook")
+    fun logbook(@Header("Authorization") token: String, @Field("task") task: String,
+                @Field("start_time") start_time: String, @Field("end_time") end_time: String,
+                @Field("description") description: String
+    ): Call<AttendanceResponse>
+
 }

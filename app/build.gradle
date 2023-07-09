@@ -6,6 +6,9 @@ plugins {
 android {
     namespace 'com.example.liveattendanceapp'
     compileSdk 33
+    viewBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.example.liveattendanceapp"
@@ -17,8 +20,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         //BASE_URL
-        buildConfigField "String", "BASE_URL", "\"http://www.sirajinv2.my.id/api/\""
-        buildConfigField "String", "BASE_IMAGE_URL", "\"http://www.sirajinv2.my.id/storage/profile/\""
+        buildConfigField "String", "BASE_URL", "\"http://192.168.1.12/api/\""
+        buildConfigField "String", "BASE_IMAGE_URL", "\"http://192.168.1.12/storage/profile/\""
     }
 
     buildTypes {
