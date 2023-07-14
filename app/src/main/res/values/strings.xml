@@ -50,6 +50,7 @@
     <string name="success_check_out">Sukses presensi pulang</string>
     <string name="something_wrong">Ada kesalahan</string>
     <string name="location_not_valid">Lokasi anda terlalu jauh untuk presensi</string>
+    <string name="fake_gps_detected">Anda terdeteksi menggunakan Fake GPS</string>
     <string name="your_already_present">Anda sudah melakukan presensi</string>
     <string name="your_password_has_been_update">Password Anda sudah diubah</string>
     <string name="your_password_didnt_match">Password Anda tidak cocok</string>

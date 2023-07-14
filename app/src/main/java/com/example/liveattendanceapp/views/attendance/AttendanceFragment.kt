@@ -209,33 +209,17 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
                         .show()
                 }
             }
-
-
         }
     }
 
-    /**
-     * For Build.VERSION.SDK_INT < 18 i.e. JELLY_BEAN_MR2
-     * Check if MockLocation setting is enabled or not
-     *
-     * @param context Pass Context object as parameter
-     * @return Returns a boolean indicating if MockLocation is enabled
-     */
-    fun isMockLocationEnabled(context: Context): Boolean? {
+    private fun isMockLocationEnabled(context: Context): Boolean? {
         return !Settings.Secure.getString(
             context.getContentResolver(),
             Settings.Secure.ALLOW_MOCK_LOCATION
         ).equals("0")
     }
 
-    /**
-     * For Build.VERSION.SDK_INT >= 18 i.e. JELLY_BEAN_MR2
-     * Check if the location recorded is a mocked location or not
-     *
-     * @param location Pass Location object received from the OS's onLocationChanged() callback
-     * @return Returns a boolean indicating if the received location is mocked
-     */
-    fun isMockLocation(location: Location?): Boolean {
+    private fun isMockLocation(location: Location?): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && location != null && location.isFromMockProvider
     }
 
@@ -246,6 +230,21 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
             if(HaversineUtil().haversine(currentLocation?.latitude!!, currentLocation?.longitude!!) > 0.2){
                 MyDialog.hideDialog()
                 MyDialog.dynamicDialog(context, getString(R.string.alert), getString(R.string.location_not_valid))
+                return
+            }
+
+            val isMockLocationEnabled = isMockLocationEnabled(requireContext())
+            val isMockLocation = isMockLocation(currentLocation)
+
+            if (isMockLocationEnabled == true) {
+                MyDialog.hideDialog()
+                MyDialog.dynamicDialog(context, getString(R.string.alert), getString(R.string.fake_gps_detected))
+                return
+            }
+
+            if (isMockLocation == true) {
+                MyDialog.hideDialog()
+                MyDialog.dynamicDialog(context, getString(R.string.alert), getString(R.string.fake_gps_detected))
                 return
             }
 
@@ -345,54 +344,6 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
 
             })
     }
-
-//    private fun getLastLocation() {
-//        if (checkPermission()) {
-//            if (isLocationEnabled()) {
-//
-//                val locationCallBack = object : LocationCallback() {
-//                    override fun onLocationResult(locationResult: LocationResult) {
-//                        super.onLocationResult(locationResult)
-//                        val location = locationResult.lastLocation
-//                        val currentLat = location!!.latitude
-//                        val currentLong = location!!.longitude
-//
-//                        /*Koordinat lokasi DPR RI*/
-//                        val destinationLat = -6.210086314480631
-//                        val destinationLon = 106.8000914977589
-//
-//                        val distance = calculateDistance(
-//                            currentLat,
-//                            currentLong,
-//                            destinationLat,
-//                            destinationLon
-//                        ) * 1000
-//
-//                        Log.d("MainActivity", "[onLocationResult] - $distance")
-//                        if (distance < 325.0) {
-//
-//                            Toast.makeText(this@MainActivity, "SUCCESSS", Toast.LENGTH_SHORT).show()
-//                        } else {
-//                            tvCheckinSuccess.visibility = View.VISIBLE
-//                            tvCheckinSuccess.text = "Anda berada diluar jangkauan"
-//                        }
-//
-//                        fusedLocationProviderClient?.removeLocationUpdates(this)
-//                    }
-//                }
-//                fusedLocationProviderClient?.requestLocationUpdates(
-//                    locationRequest,
-//                    locationCallBack,
-//                    Looper.getMainLooper()
-//                )
-//            } else {
-//                Toast.makeText(this, "Please turn on your location", Toast.LENGTH_SHORT).show()
-//                startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-//            }
-//        } else {
-//            requestPermission()
-//        }
-//    }
 
     private fun checkIsCheckIn() {
         if (isCheckIn){
@@ -527,7 +478,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
             //Coordinate DPR
             val dpr = LatLng(-6.21007761685729, 106.80000935358223)
             map?.moveCamera(CameraUpdateFactory.newLatLng(dpr))
-            map?.animateCamera(CameraUpdateFactory.zoomTo(20f))
+            map?.animateCamera(CameraUpdateFactory.zoomTo(18f))
 
             goToCurrentLocation()
         }else{
@@ -551,26 +502,10 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
                             val currentLat = currentLocation!!.latitude
                             val currentLong = currentLocation!!.longitude
 
-//                            val destinationLat = -6.210086314480631
-//                            val destinationLon = 106.8000914977589
-//
-//                            val distance = calculateDistance(
-//                                currentLat!!,
-//                                currentLong!!,
-//                                destinationLat,
-//                                destinationLon
-//                            ) * 1000
-//
-//                            if (distance < 325.0) {
-//                                println("sukses")
-//                            } else {
-//                                println("Gagal")
-//                            }
-
                             if (currentLat != null && currentLong != null){
                                 val latLng = LatLng(currentLat,currentLong)
                                 map?.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-                                map?.animateCamera(CameraUpdateFactory.zoomTo(20F))
+                                map?.animateCamera(CameraUpdateFactory.zoomTo(18F))
 
                                 val address = getAddress(currentLat, currentLong)
                                 if (address != null && address.isNotEmpty()){
@@ -592,16 +527,6 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
             setRequestPermission()
         }
     }
-
-//    private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-//        val r = 6372.8 // in kilometers
-//        val radiansLat1 = Math.toRadians(lat1)
-//        val radiansLat2 = Math.toRadians(lat2)
-//        val dLat = Math.toRadians(lat2 - lat1)
-//        val dLon = Math.toRadians(lon2 - lon1)
-//        return 2 * r * asin(sqrt(sin(dLat / 2).pow(2.0) + sin(dLon / 2).pow(2.0) * cos(radiansLat1) * cos(radiansLat2)))
-//    }
-
 
     private fun getAddress(latitude: Double, longitude: Double): String? {
         val result: String
