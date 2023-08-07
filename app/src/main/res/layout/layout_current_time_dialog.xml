@@ -11,8 +11,8 @@
     <TextClock
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:format24Hour="EEEE, dd MMM yyyy"
-        android:format12Hour="EEEE, dd MMM yyyy"
+        android:format24Hour="dd MMM yyyy"
+        android:format12Hour="dd MMM yyyy"
         android:textColor="@android:color/darker_gray"/>
 
     <TextClock

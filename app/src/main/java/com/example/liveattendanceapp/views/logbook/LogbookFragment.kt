@@ -24,7 +24,7 @@ import retrofit2.Response
 import java.util.Calendar
 
 class LogbookFragment : Fragment() {
-    
+
     private lateinit var binding: FragmentLogbookBinding
     private lateinit var startTime: String
     private lateinit var endTime: String
@@ -50,7 +50,7 @@ class LogbookFragment : Fragment() {
                 }, startHour, startMinute, true
             ).show()
         }
-        
+
         binding.tiJamSelesai.setOnClickListener {
             val currentTime = Calendar.getInstance()
             val startHour = currentTime.get(Calendar.HOUR_OF_DAY)
@@ -82,14 +82,9 @@ class LogbookFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if (binding.etKeterangan.text.toString().isEmpty()){
-                context?.toast("Harap isi Keterangan")
-                return@setOnClickListener
-            }
-
             MyDialog.showProgressDialog(context)
             addLogBook(binding.etIsiTugasPokok.text.toString(), startTime.toString(), endTime.toString(),
-            binding.etKeterangan.text.toString())
+                binding.etKeterangan.text.toString())
         }
 
         return binding.root
@@ -107,8 +102,20 @@ class LogbookFragment : Fragment() {
                     MyDialog.hideDialog()
                     if (response.isSuccessful){
                         val attendanceResponse = response.body()
+                        if (attendanceResponse?.message.toString() == "Success") {
 
-                        MyDialog.dynamicDialog(context, "Berhasil mengisi logbook", attendanceResponse?.message.toString())
+                            MyDialog.dynamicDialog(
+                                context,
+                                "Berhasil mengisi logbook",
+                                attendanceResponse?.message.toString()
+                            )
+                        }else{
+                            MyDialog.dynamicDialog(
+                                context,
+                                "Alert",
+                                attendanceResponse?.message.toString()
+                            )
+                        }
 
                     }else{
                         MyDialog.dynamicDialog(context, getString(R.string.alert), getString(R.string.something_wrong))

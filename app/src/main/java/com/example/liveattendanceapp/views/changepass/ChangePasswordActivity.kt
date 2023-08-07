@@ -52,15 +52,9 @@ class ChangePasswordActivity : AppCompatActivity() {
 
     private fun changePassToServer(oldPass: String, newPass: String, confirmNewPass: String) {
         val token = HawkStorage.instance(this).getToken()
-        val changePassRequest = ChangePasswordRequest(
-            passwordOld = oldPass,
-            password = newPass,
-            passwordConfirmation = confirmNewPass
-        )
-        val changePassRequestString = Gson().toJson(changePassRequest)
         MyDialog.showProgressDialog(this)
         ApiServices.getLiveAttendanceServices()
-            .changePassword("Bearer $token", changePassRequestString)
+            .changePassword("Bearer $token", oldPass, newPass, confirmNewPass)
             .enqueue(object : Callback<ChangePasswordResponse> {
                 override fun onResponse(
                     call: Call<ChangePasswordResponse>,

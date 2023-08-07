@@ -212,7 +212,7 @@ class AttendanceFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    private fun isMockLocationEnabled(context: Context): Boolean? {
+    private fun isMockLocationEnabled(context: Context): Boolean {
         return !Settings.Secure.getString(
             context.getContentResolver(),
             Settings.Secure.ALLOW_MOCK_LOCATION
