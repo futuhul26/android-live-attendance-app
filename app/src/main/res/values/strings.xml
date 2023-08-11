@@ -45,7 +45,7 @@
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="alert">Peringatan</string>
-    <string name="please_take_your_photo">Mohon ambil foto Anda</string>
+    <string name="please_take_your_photo">Mohon ambil foto wajah Anda</string>
     <string name="success_check_in">Sukses presensi datang</string>
     <string name="success_check_out">Sukses presensi pulang</string>
     <string name="something_wrong">Ada kesalahan</string>
